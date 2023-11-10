@@ -36,7 +36,7 @@ export class LoginPage implements OnInit {
     try {
       const userCredential = await this.auth.signInWithEmailAndPassword(this.email, this.contrasena);
       // Autenticación exitosa, puedes redirigir a la siguiente página
-      this.router.navigateByUrl("menu");
+      this.router.navigateByUrl("scanner");
     } catch (error) {
       console.error("Error de autenticación:", error);
       this.helperService.showAlert("Credenciales no válidas.", "Error de autenticación");

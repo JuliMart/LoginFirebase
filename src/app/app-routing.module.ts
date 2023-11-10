@@ -22,7 +22,8 @@ const routes: Routes = [
   {
     path: ':num/menu-uno',
     loadChildren: () => import('./pages/menu-uno/menu-uno.module').then( m => m.MenuUnoPageModule)
-  },  {
+  },
+  {
     path: 'menu-dos',
     loadChildren: () => import('./pages/menu-dos/menu-dos.module').then( m => m.MenuDosPageModule)
   },
@@ -35,7 +36,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
   },
 
-
+  {
+    path: 'scanner',
+    loadChildren: () => import('./pages/scanner/scanner.module').then( m => m.ScannerPageModule)
+  }
 
 
 ];
