@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { HelperService } from 'src/app/services/helper.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Component({
   selector: 'app-registro',
@@ -21,7 +22,8 @@ export class RegistroPage implements OnInit {
     private auth: AngularFireAuth,
     private helper: HelperService,
     private router: Router,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private db: AngularFireDatabase // Agrega AngularFireDatabase
   ) { }
 
   ngOnInit() {
@@ -35,15 +37,19 @@ export class RegistroPage implements OnInit {
   async registro() {
     const loader = await this.helper.showLoader("Cargando");
     try {
+      // Crea el usuario en Firebase Authentication
       const request = await this.auth.createUserWithEmailAndPassword(this.email, this.contrasena);
-      const user = [{
+
+      // Almacena información adicional en Firebase Realtime Database
+      const user = {
         correo: this.email,
         nombre: this.nombre,
         apellido: this.apellido,
         rut: this.rut,
-        contrasena: this.contrasena
-      }];
-      this.storageService.guardarUsuario(user);
+      };
+
+      // Utiliza un array con un solo usuario para que coincida con la estructura del servicio de almacenamiento
+      this.storageService.guardarUsuario([user]);
 
       await this.router.navigateByUrl('login');
       await loader.dismiss();

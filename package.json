@@ -29,8 +29,10 @@
     "@capacitor/preferences": "^5.0.6",
     "@capacitor/status-bar": "5.0.6",
     "@ionic/angular": "^7.0.0",
+    "@zxing/browser": "^0.1.4",
     "firebase": "^10.3.1",
     "ionicons": "^7.0.0",
+    "ngx-qrscanner": "^0.0.1-security",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
@@ -47,6 +49,7 @@
     "@angular/compiler-cli": "^16.0.0",
     "@angular/language-service": "^16.0.0",
     "@capacitor/cli": "5.2.3",
+    "@capacitor/geolocation": "^5.0.6",
     "@ionic/angular-toolkit": "^9.0.0",
     "@types/body-parser": "^1.19.4",
     "@types/jasmine": "~4.3.0",
