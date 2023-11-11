@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { HelperService } from 'src/app/services/helper.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { RegionesService } from 'src/app/services/region.service';
+import { ComunaService } from 'src/app/services/comuna.service';
 
 @Component({
   selector: 'app-registro',
@@ -17,17 +19,56 @@ export class RegistroPage implements OnInit {
   nombre: string = "";
   apellido: string = "";
   rut: string = "";
+  regiones: any[] = [];
+  selectedRegion: any = null;
+  comunas: any [] = [];
+  selectedComuna: any = null;
+
 
   constructor(
     private auth: AngularFireAuth,
     private helper: HelperService,
     private router: Router,
     private storageService: StorageService,
-    private db: AngularFireDatabase // Agrega AngularFireDatabase
+    private db: AngularFireDatabase,
+    private regionesService: RegionesService,
+    private comunasService: ComunaService
   ) { }
 
   ngOnInit() {
     this.userView();
+    this.loadRegiones();
+    this.loadComunas();
+  }
+
+  loadRegiones() {
+    this.regionesService.getRegiones().subscribe(
+      (data: any[]) => {
+        this.regiones = data;
+        console.log('Regiones cargadas:', this.regiones);
+      },
+      (error) => {
+        console.error('Error al cargar las regiones', error);
+      }
+    );
+  }
+  loadComunas() {
+    this.comunasService.getComunas().subscribe(
+      (data: any[]) => {
+        this.comunas = data;
+        console.log('Comunas cargadas:', this.comunas);
+      },
+      (error: any) => {
+        console.error('Error al cargar las comunas', error);
+      }
+    );
+  }
+  
+  onRegionChange(event: any) {
+    console.log('Región seleccionada:', this.selectedRegion);
+  }
+  onComunaChange(event: any) {
+    console.log('Comuna seleccionada:', this.selectedComuna);
   }
 
   async userView() {
@@ -37,19 +78,17 @@ export class RegistroPage implements OnInit {
   async registro() {
     const loader = await this.helper.showLoader("Cargando");
     try {
-      // Crea el usuario en Firebase Authentication
       const request = await this.auth.createUserWithEmailAndPassword(this.email, this.contrasena);
-
-      // Almacena información adicional en Firebase Realtime Database
-      const user = {
+      const user = [{
         correo: this.email,
         nombre: this.nombre,
         apellido: this.apellido,
         rut: this.rut,
-      };
-
-      // Utiliza un array con un solo usuario para que coincida con la estructura del servicio de almacenamiento
-      this.storageService.guardarUsuario([user]);
+        contrasena: this.contrasena,
+        region: this.regiones,
+        comuna:this.comunas
+      }];
+      this.storageService.guardarUsuario(user);
 
       await this.router.navigateByUrl('login');
       await loader.dismiss();

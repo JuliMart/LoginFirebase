@@ -24,8 +24,20 @@
         <ion-input [(ngModel)]="rut" type="text"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Contraseña:</ion-label>
-        <ion-input [(ngModel)]="contrasena" type="password"></ion-input>
+        <ion-label>Selecciona una región</ion-label>
+        <ion-select placeholder="Región" [(ngModel)]="selectedRegion" (ionChange)="onRegionChange($event)">
+          <ion-select-option *ngFor="let region of regiones" [value]="region.id">
+            {{ region.name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Selecciona una comuna</ion-label>
+        <ion-select placeholder="Comuna" [(ngModel)]="selectedComuna" (ionChange)="onComunaChange($event)">
+          <ion-select-option *ngFor="let comuna of comunas" [value]="comuna.id">
+            {{ comuna.name }}
+          </ion-select-option>
+        </ion-select>
       </ion-item>
     </ion-card-content>
     <ion-row>
