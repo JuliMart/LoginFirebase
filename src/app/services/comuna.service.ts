@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ComunaService {
-  private apiUrl = 'https://api.shipit.cl/v/regions';
+  private apiUrl = 'https://api.shipit.cl/v/communes';
 
   constructor(private http: HttpClient) {}
 
