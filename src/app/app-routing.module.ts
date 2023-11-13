@@ -35,10 +35,7 @@ const routes: Routes = [
     path: 'scanner',
     loadChildren: () => import('./pages/scanner/scanner.module').then( m => m.ScannerPageModule)
   },
-  {
-    path: '**',
-    component: NotFoundComponent,
-  },
+  { path: '**', component: NotFoundComponent }
 
 ];
 
