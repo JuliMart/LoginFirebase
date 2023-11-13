@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ProtPagesComponent } from './prot-pages.component';
+import { ProtectedPagesComponent } from './prot-pages.component';
 
 describe('ProtPagesComponent', () => {
-  let component: ProtPagesComponent;
-  let fixture: ComponentFixture<ProtPagesComponent>;
+  let component: ProtectedPagesComponent;
+  let fixture: ComponentFixture<ProtectedPagesComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProtPagesComponent ],
+      declarations: [ ProtectedPagesComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ProtPagesComponent);
+    fixture = TestBed.createComponent(ProtectedPagesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

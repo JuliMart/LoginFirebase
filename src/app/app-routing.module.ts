@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -33,8 +34,8 @@ const routes: Routes = [
   {
     path: 'scanner',
     loadChildren: () => import('./pages/scanner/scanner.module').then( m => m.ScannerPageModule)
-  }
-
+  },
+  { path: '**', component: NotFoundComponent }
 
 ];
 
