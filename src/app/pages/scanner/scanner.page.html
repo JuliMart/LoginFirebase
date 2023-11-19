@@ -18,7 +18,7 @@
     <p>{{ scannedQRCode }}</p>
     <div *ngIf="authenticatedUser">
       <p>Detalles del usuario:</p>
-      <img [src]="fotoURL" alt="Foto tomada" />
+      <img src="/assets/images/descargadev.png" alt="Foto Captura" />
 
       <p class="bold-text"><strong>Nombre:</strong> {{ authenticatedUser[0]?.nombre  }}  {{  authenticatedUser[0]?.apellido}}</p>
       <p class="bold-text"><strong>Email:</strong> {{ authenticatedUser[0]?.correo }}</p>
