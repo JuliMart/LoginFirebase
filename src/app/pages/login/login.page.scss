@@ -1,7 +1,7 @@
 ion-card {
     max-width: 500px;
     margin: auto;
-    margin-top: 150px;
+    margin-top: 50px;
 }
 
 ion-item {
@@ -30,3 +30,16 @@ ion-select-option {
 ion-label {
     color: #333333;
 }
+
+  /* Estilos personalizados */
+  .image-container {
+    text-align: center;
+    margin-top: 20px; /* Ajusta según sea necesario */
+  }
+
+  .logo-image {
+    width: 190px; /* Ajusta el tamaño de la imagen según sea necesario */
+    height: auto;
+    margin-top: 30px;
+  }
+
