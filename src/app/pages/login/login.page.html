@@ -1,4 +1,10 @@
 <ion-content [fullscreen]="true">
+
+  <!-- Agrega la imagen en el centro arriba -->
+  <div class="image-container">
+    <img src="assets/icon/clipart1745759.png" alt="Logo" class="logo-image">
+  </div>
+
   <ion-card> 
     <ion-card-content>
       <ion-item>
@@ -10,6 +16,7 @@
         <ion-input [(ngModel)]="contrasena" type="password"></ion-input>
       </ion-item>
     </ion-card-content>
+
     <ion-row>
       <ion-col>
         <ion-button (click)="login()" expand="full">Acceder</ion-button>
@@ -22,6 +29,5 @@
       </ion-col>
     </ion-row>
   </ion-card>
-
 </ion-content>
- 
+
