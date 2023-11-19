@@ -16,21 +16,18 @@
   <div *ngIf="scannedQRCode">
     <h1 style="font-size: 24px; color: green; font-weight: bold;">Código QR escaneado</h1>
     <p>{{ scannedQRCode }}</p>
-    <div *ngIf="currentLocation">
-      <div *ngIf="authenticatedUser">
-        <p>Detalles del usuario:</p>
-        <img [src]="fotoURL" alt="Foto tomada" />
+    <div *ngIf="authenticatedUser">
+      <p>Detalles del usuario:</p>
+      <img [src]="fotoURL" alt="Foto tomada" />
 
-        <p class="bold-text"><strong>Nombre:</strong> {{ authenticatedUser.name }}</p>
-        <p class="bold-text"><strong>Email:</strong> {{ authenticatedUser.email }}</p>
-        <p class="bold-text"><strong>Rut:</strong> {{ authenticatedUser.rut }}</p>
-        <p class="bold-text"><strong>Ciudad:</strong> {{ authenticatedUser.city.name }}</p>
-        <p class="bold-text"><strong>Comuna:</strong> {{ authenticatedUser.commune.name }}</p>
-       
-      </div>
-      <p>Coordenadas:</p>
-      <p>{{ currentLocation }}</p>
+      <p class="bold-text"><strong>Nombre:</strong> {{ authenticatedUser[0]?.nombre  }}  {{  authenticatedUser[0]?.apellido}}</p>
+      <p class="bold-text"><strong>Email:</strong> {{ authenticatedUser[0]?.correo }}</p>
+      <p class="bold-text"><strong>Rut:</strong> {{ authenticatedUser[0]?.rut }}</p>
+      <p class="bold-text"><strong>Region:</strong> {{ authenticatedUser[0]?.region[0]?.name }}</p>
+      <p class="bold-text"><strong>Comuna:</strong> {{ authenticatedUser[0]?.comuna[0]?.name }}</p>
     </div>
+    <p>Coordenadas:</p>
+    <p>{{ currentLocation }}</p>
     <ion-button (click)="openLink(scannedQRCode)" expand="full">Ir al Link</ion-button>
   </div>
 </ion-content>
