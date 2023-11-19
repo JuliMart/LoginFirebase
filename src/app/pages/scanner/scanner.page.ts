@@ -4,6 +4,7 @@ import { NavController } from '@ionic/angular';
 import { Geolocation, GeolocationPosition } from '@capacitor/geolocation';
 import { StorageService } from 'src/app/services/storage.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-scanner',
@@ -22,7 +23,7 @@ export class ScannerPage implements OnInit {
     private sanitizer: DomSanitizer
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     // Inicialización del componente
     const fotoURLFromLocalStorage = localStorage.getItem('foto');
     if (fotoURLFromLocalStorage) {
@@ -34,10 +35,13 @@ export class ScannerPage implements OnInit {
 
     // Configuración del lector de códigos QR
     codeReader
-      .decodeFromVideoDevice(undefined, videoElement, (result, err) => {
+      .decodeFromVideoDevice(undefined, videoElement, async (result, err) => {
         if (result) {
           this.scannedQRCode = result.getText();
           console.log('Código QR escaneado:', this.scannedQRCode);
+
+          // Espera a que la promesa se resuelva antes de asignar a authenticatedUser
+          this.authenticatedUser = await this.storageService.obtenerUsuario();
         }
         if (err) {
           console.error('Error al escanear:', err);
@@ -49,9 +53,6 @@ export class ScannerPage implements OnInit {
 
     // Obtener la ubicación actual
     this.getCurrentLocation();
-
-    // Obtener detalles del usuario autenticado desde el StorageService
-    this.authenticatedUser = this.storageService.obtenerUsuario(); // Ajustar según la implementación real
   }
 
   // Función para obtener la ubicación actual
@@ -75,5 +76,10 @@ export class ScannerPage implements OnInit {
     if (url) {
       window.open(url, '_blank');
     }
+  }
+  obtenerUsuario() {this.storageService.obtenerUsuario().then((usuarios: Usuario[]) => {
+    // Aquí puedes manejar los datos del usuario obtenidos
+    console.log('Datos del Usuario:', usuarios);
+  });
   }
 }
