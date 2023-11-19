@@ -6,6 +6,7 @@ import { StorageService } from 'src/app/services/storage.service';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { RegionesService } from 'src/app/services/region.service';
 import { ComunaService } from 'src/app/services/comuna.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-registro',
@@ -25,6 +26,7 @@ export class RegistroPage implements OnInit {
   selectedComuna: any = null;
 
 
+
   constructor(
     private auth: AngularFireAuth,
     private helper: HelperService,
@@ -32,7 +34,9 @@ export class RegistroPage implements OnInit {
     private storageService: StorageService,
     private db: AngularFireDatabase,
     private regionesService: RegionesService,
-    private comunasService: ComunaService
+    private comunasService: ComunaService,
+    private navCtrl: NavController,
+
   ) { }
 
   ngOnInit() {
@@ -101,5 +105,8 @@ export class RegistroPage implements OnInit {
         await loader.dismiss();
       }
     }
+  }
+  navigateLeft() {
+    this.navCtrl.back();
   }
 }
