@@ -55,14 +55,16 @@ export class RegistroPage implements OnInit {
   loadComunas() {
     this.comunasService.getComunas().subscribe(
       (data: any[]) => {
+        console.log('Respuesta de la API:', data);
         this.comunas = data;
-        console.log('Comunas cargadas:', this.comunas);
       },
       (error: any) => {
         console.error('Error al cargar las comunas', error);
       }
     );
   }
+  
+  
   
   onRegionChange(event: any) {
     console.log('Región seleccionada:', this.selectedRegion);
@@ -86,7 +88,7 @@ export class RegistroPage implements OnInit {
         rut: this.rut,
         contrasena: this.contrasena,
         region: this.regiones,
-        comuna:this.comunas
+        comuna: this.comunas
       }];
       this.storageService.guardarUsuario(user);
 

@@ -20,8 +20,8 @@ export class ScannerPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private storageService: StorageService,
-    private sanitizer: DomSanitizer
-  ) {}
+    private sanitizer: DomSanitizer,
+    ) {}
 
   async ngOnInit() {
     // Inicialización del componente
@@ -65,7 +65,7 @@ export class ScannerPage implements OnInit {
       console.error('Error al obtener la ubicación:', error);
     }
   }
-
+  
   // Función para navegar hacia atrás
   navigateLeft() {
     this.navCtrl.back();

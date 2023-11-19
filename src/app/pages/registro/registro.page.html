@@ -37,11 +37,11 @@
       </ion-item>
       <ion-item>
         <ion-label>Selecciona una comuna</ion-label>
-        <ion-select placeholder="Comuna" [(ngModel)]="selectedComuna" (ionChange)="onComunaChange($event)">
-          <ion-select-option *ngFor="let comuna of comunas" [value]="comuna.id">
-            {{ comuna.name }}
-          </ion-select-option>
-        </ion-select>
+          <ion-select placeholder="Comuna" [(ngModel)]="selectedComuna" (ionChange)="onComunaChange($event)">
+            <ion-select-option *ngFor="let comuna of comunas" [value]="comuna.id">
+              {{ comuna.name }}
+            </ion-select-option>
+          </ion-select>
       </ion-item>
     </ion-card-content>
     <ion-row>
