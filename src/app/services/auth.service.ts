@@ -1,23 +1,15 @@
-// auth.service.ts
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
 
-  private loggedIn = false;
+  constructor(private afAuth: AngularFireAuth) {}
 
-  // Simula la lógica de autenticación
-  login() {
-    this.loggedIn = true;
-  }
-
-  logout() {
-    this.loggedIn = false;
-  }
-
+  // Método para obtener el estado de autenticación
   isLoggedIn(): boolean {
-    return this.loggedIn;
+    return !!this.afAuth.currentUser;
   }
 }
