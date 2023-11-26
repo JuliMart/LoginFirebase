@@ -36,7 +36,13 @@ const routes: Routes = [
     path: 'scanner',
     loadChildren: () => import('./pages/scanner/scanner.module').then(m => m.ScannerPageModule),canActivate: [AuthGuard],
   },
-  { path: '**', component: NotFoundComponent }
+  {
+    path: 'almacenado',
+    loadChildren: () => import('./pages/almacenado/almacenado.module').then( m => m.AlmacenadoPageModule)
+  },
+  { path: '**', component: NotFoundComponent },
+
+
 
 ];
 
